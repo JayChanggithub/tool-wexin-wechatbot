@@ -1,0 +1,15 @@
+wxpy==0.3.9.8
+gunicorn==19.9.0
+python-gitlab
+paramiko
+redis
+pymongo
+flask
+flask_restful
+flask_mail
+flask-login
+Flask-Uploads
+gevent
+werkzeug
+gevent-websocket
+pycryptodome

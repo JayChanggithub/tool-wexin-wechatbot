@@ -1,0 +1,17 @@
+stages:
+- build
+
+BuildImage:
+  stage: build
+  before_script:
+  - export VERSION=$(egrep -o 'Rev\:\ ([0-9].){2}[0-9]+' README.md | awk '{print $NF}')
+  - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
+  after_script:
+  - docker logout
+  script:
+  - docker build --no-cache -t $CI_REGISTRY_IMAGE:$VERSION .
+  - docker push $CI_REGISTRY_IMAGE:$VERSION
+  tags:
+  - TA-LONG-RUN-TEST
+  only:
+  - branches
